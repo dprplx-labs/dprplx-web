@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git fetch *)",
+      "Bash(git pull *)",
+      "Bash(npm run *)",
+      "Bash(npx tsc *)",
+      "Bash(curl -s http://localhost:3000)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(taskkill /PID 11764 /F)",
+      "PowerShell(Stop-Process -Id 11764 -Force)"
+    ]
+  }
+}
