@@ -1,5 +1,7 @@
 'use server'
 
+import { Resend } from 'resend'
+
 export async function submitContact(
   formData: FormData,
 ): Promise<{ success: boolean; error?: string }> {
@@ -16,15 +18,26 @@ export async function submitContact(
     return { success: false, error: 'Please enter a valid email address.' }
   }
 
-  // TODO: plug in your email service here, e.g.:
-  // await resend.emails.send({
-  //   from: 'no-reply@dprplx.com',
-  //   to: 'dprplx.labs@gmail.com',
-  //   subject: `New message from ${name}`,
-  //   text: `From: ${name} <${email}>\n\n${message}`,
-  // })
+  if (!process.env.RESEND_API_KEY) {
+    // Graceful fallback during local dev / before key is configured
+    console.log('[contact submission — no RESEND_API_KEY]', { name, email, message })
+    return { success: true }
+  }
 
-  console.log('[contact submission]', { name, email, message })
+  try {
+    const resend = new Resend(process.env.RESEND_API_KEY)
 
-  return { success: true }
+    await resend.emails.send({
+      from: 'dprplx <onboarding@resend.dev>',
+      to: 'dprplx.labs@gmail.com',
+      replyTo: email,
+      subject: `New message from ${name}`,
+      text: `Name: ${name}\nEmail: ${email}\n\n${message}`,
+    })
+
+    return { success: true }
+  } catch (err) {
+    console.error('[contact submission error]', err)
+    return { success: false, error: 'Something went wrong. Please try again.' }
+  }
 }

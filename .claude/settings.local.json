@@ -8,7 +8,12 @@
       "Bash(curl -s http://localhost:3000)",
       "mcp__Claude_Preview__preview_start",
       "Bash(taskkill /PID 11764 /F)",
-      "PowerShell(Stop-Process -Id 11764 -Force)"
+      "PowerShell(Stop-Process -Id 11764 -Force)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Skill(update-config)",
+      "Skill(update-config:*)",
+      "Bash(npm install *)"
     ]
   }
 }
