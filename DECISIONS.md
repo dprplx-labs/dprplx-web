@@ -93,7 +93,23 @@ incompatible with Turbopack. This is a breaking change from Tailwind v3 setups.
 
 ---
 
-## Deployment approach (CLI not GitHub integration)
+## Branching strategy
+
+**Decision:** `main` = production; all work on feature or fix branches; PR before merge.
+
+**Branch naming:** `feat/description` for new features, `fix/description` for bug fixes.
+
+**Why:** Even solo, this pattern provides a safety net (main is always deployable),
+a natural review point, and a clean git history. It also sets up correctly for when
+collaborators are added.
+
+**Env vars habit:** Local secrets in `.env.local` (gitignored by Next.js). Production
+secrets in Vercel Environment Variables. `.env.example` committed to repo with keys
+but no values — documents what's required without exposing secrets.
+
+---
+
+## Deployment approach (Deploy Hook, not GitHub OAuth integration)
 
 **Decision:** Deploy via `vercel --prod` CLI rather than GitHub-connected auto-deploy.
 
@@ -101,5 +117,9 @@ incompatible with Turbopack. This is a breaking change from Tailwind v3 setups.
 the repo lives under the `dprplx-labs` org (owned by a different GitHub identity). The
 OAuth mismatch prevented GitHub integration from being established at launch time.
 
-**To fix later:** Add the personal `dprplx` GitHub account as a connected identity in
-Vercel, then reconnect the repo under project Git settings.
+**Solution implemented:** Vercel Deploy Hook + GitHub Actions. Vercel generates a webhook
+URL; a GitHub Actions workflow (`.github/workflows/deploy.yml`) POSTs to it on every
+push to `main`. Fully automatic deploys with no OAuth dependency.
+
+**To fix properly (future):** Migrate to a new Vercel account under the `dprplx` GitHub
+identity — then native Git integration works cleanly. Scheduled as a dedicated session.

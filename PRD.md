@@ -52,7 +52,7 @@ clarity is the goal. The site should feel like the brand it represents.
 | Hero | ✅ Live | "Software distilled to its essence." |
 | Philosophy | ✅ Live | Brand manifesto |
 | Portfolio | ✅ Live | Card Show Club (live); 2 placeholders |
-| Contact | ✅ Live | Form validates; email not yet delivered |
+| Contact | ✅ Live | Form delivers email via Resend to dprplx.labs@gmail.com |
 | Footer | ✅ Live | Wordmark + copyright |
 
 ---
@@ -68,12 +68,20 @@ clarity is the goal. The site should feel like the brand it represents.
 
 ---
 
-## Planned for v1.1
+## Completed in v1.1
 
-- **Resend integration** — wire contact form to deliver emails to dprplx.labs@gmail.com
-- **www redirect** — `www.dprplx.com` → `dprplx.com`
-- **GitHub auto-deploy** — fix Vercel/GitHub account connection for push-to-deploy
+- ✅ Resend integration — contact form delivers email to dprplx.labs@gmail.com
+- ✅ www redirect — `www.dprplx.com` → `dprplx.com` (301 permanent)
+- ✅ GitHub auto-deploy — Deploy Hook + GitHub Actions on push to `main`
+- ✅ Favicon — cairn SVG mark
+- ✅ Open Graph — full OG + Twitter card metadata + dynamic OG image
+- ✅ Vercel Analytics — pageview tracking enabled
+
+## Planned for v1.2
+
+- **Resend sending domain** — verify dprplx.com, replace `onboarding@resend.dev`
 - **Portfolio card 02** — reveal next app when ready to tease
+- **Vercel account migration** — move to dprplx identity (dedicated session)
 
 ---
 

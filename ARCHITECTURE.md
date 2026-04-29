@@ -18,8 +18,11 @@ backed by a Server Function. Hosted on Vercel, deployed from `dprplx-labs/dprplx
 | Bundler | Turbopack | Default in Next 16; pass `--webpack` to opt out |
 | Linting | ESLint v9 flat config | `eslint.config.mjs`; NOT run automatically by `next build` |
 | Font | Geist (Sans + Mono) | Via `next/font/google` |
-| Deployment | Vercel (Hobby) | CLI-deployed; GitHub auto-deploy not yet wired |
+| Analytics | @vercel/analytics | `<Analytics />` in root layout; free Vercel tier |
+| Email | Resend | Server Function only; `RESEND_API_KEY` env var |
+| Deployment | Vercel (Hobby) | GitHub Actions → Deploy Hook → auto-deploy on push to `main` |
 | Domain | dprplx.com | GoDaddy DNS → Vercel A record `216.198.79.1` |
+| www | www.dprplx.com | 301 → dprplx.com via Vercel domain redirect |
 | Repo | dprplx-labs/dprplx-web | GitHub org: dprplx-labs |
 
 ---
@@ -90,8 +93,29 @@ Used in: `Nav.tsx` (width=34) and `IntroSequence.tsx` brand phase (width=88).
 
 `ContactForm.tsx` (client) calls `app/actions.ts` (Server Function, `'use server'`).
 
-Current state: validates fields, logs submission to console. **Email delivery not yet wired.**
-Intended provider: [Resend](https://resend.com) — free tier, 100 emails/day.
+Sends via Resend: `from: onboarding@resend.dev` → `to: dprplx.labs@gmail.com`, `replyTo` set
+to the sender's email. Gracefully falls back to console.log if `RESEND_API_KEY` is not set
+(safe for local dev without the key).
+
+**To upgrade sending domain:** verify `dprplx.com` in Resend → update `from` to
+`hello@dprplx.com` or `noreply@dprplx.com`.
+
+## Deploy Pipeline
+
+Push to `main` → GitHub Actions (`.github/workflows/deploy.yml`) → HTTP POST to Vercel
+Deploy Hook → Vercel builds and promotes to production.
+
+The Deploy Hook approach bypasses the Vercel/GitHub OAuth mismatch (Vercel account is
+authenticated as `cardshowclub` GitHub; repo lives under `dprplx-labs` org owned by the
+personal `dprplx` GitHub account).
+
+## Environment Variables
+
+| Variable | Where | Purpose |
+|---|---|---|
+| `RESEND_API_KEY` | Vercel Production env + `.env.local` | Resend email delivery |
+
+Local dev: copy `.env.example` → `.env.local` and fill in values. Never commit `.env.local`.
 
 ---
 
