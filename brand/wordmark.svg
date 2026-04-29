@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 220" fill="none">
+  <!-- dprplx wordmark — text only -->
+  <!-- Requires Geist font. For portable/print use, open in Figma or Illustrator
+       and convert text to outlines (Type → Create Outlines). -->
+  <rect width="860" height="220" fill="#0a0a0a"/>
+
+  <text
+    x="430"
+    y="148"
+    text-anchor="middle"
+    font-family="Geist, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+    font-weight="200"
+    font-size="116"
+    letter-spacing="20"
+    fill="#FFFFFF"
+  >dprplx</text>
+</svg>
