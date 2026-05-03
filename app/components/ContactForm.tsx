@@ -4,7 +4,7 @@ import { useState, useTransition } from 'react'
 import { submitContact } from '@/app/actions'
 
 const fieldClass =
-  'w-full bg-transparent border-b border-zinc-800 py-3 text-[15px] font-light text-zinc-200 placeholder:text-zinc-700 focus:outline-none focus:border-zinc-600 transition-colors duration-300'
+  'w-full bg-transparent border-b border-zinc-600 py-3 text-[15px] font-light text-zinc-200 placeholder:text-zinc-500 focus:outline-none focus:border-zinc-400 transition-colors duration-300'
 
 export default function ContactForm() {
   const [name, setName]       = useState('')

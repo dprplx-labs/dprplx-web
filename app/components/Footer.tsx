@@ -5,8 +5,8 @@ export default function Footer() {
         <span className="text-sm font-light tracking-[0.28em] text-zinc-500">
           dprplx
         </span>
-        <span className="text-[11px] font-light tracking-[0.15em] text-zinc-700">
-          © 2025 dprplx
+        <span className="text-[11px] font-light tracking-[0.15em] text-zinc-500">
+          © 2026 dprplx. All rights reserved.
         </span>
       </div>
     </footer>

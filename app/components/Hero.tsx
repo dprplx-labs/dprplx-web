@@ -3,10 +3,10 @@ export default function Hero() {
     <section className="min-h-[100dvh] flex flex-col justify-center px-8 md:px-16 lg:px-24 pb-16">
       <div className="max-w-5xl pt-16">
         <p
-          className="text-[11px] font-light tracking-[0.45em] text-zinc-600 uppercase mb-12"
+          className="text-[11px] font-light tracking-[0.45em] text-[#87B1FF] uppercase mb-12"
           style={{ animation: "fadeUp 0.9s ease-out 0.1s both" }}
         >
-          Portfolio Co. · Est. 2025
+          Portfolio Co. · Est. 2026
         </p>
 
         <h1
