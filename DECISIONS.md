@@ -109,17 +109,32 @@ but no values — documents what's required without exposing secrets.
 
 ---
 
-## Deployment approach (Deploy Hook, not GitHub OAuth integration)
+## Deployment approach — native Vercel Git integration
 
-**Decision:** Deploy via `vercel --prod` CLI rather than GitHub-connected auto-deploy.
+**Current state:** Native Vercel Git integration. `dprplx-labs/dprplx-web` is directly
+connected to the Vercel project under `dprplx.labs@gmail.com`. Every push to `main`
+auto-deploys with no workaround required.
 
-**Why:** The Vercel account is authenticated to the `cardshowclub` GitHub account, while
-the repo lives under the `dprplx-labs` org (owned by a different GitHub identity). The
-OAuth mismatch prevented GitHub integration from being established at launch time.
+**History:**
+- v1.0: CLI-deployed (`vercel --prod`) — original Vercel account tied to `cardshowclub`
+  GitHub could not see `dprplx-labs` repos
+- v1.1: Deploy Hook + GitHub Actions workaround — Vercel webhook URL called by
+  `.github/workflows/deploy.yml` on every push to `main`
+- v1.2: Migrated Vercel account to `dprplx.labs@gmail.com` linked to `dprplx` GitHub
+  identity → native Git integration connected cleanly → Deploy Hook workaround retired
 
-**Solution implemented:** Vercel Deploy Hook + GitHub Actions. Vercel generates a webhook
-URL; a GitHub Actions workflow (`.github/workflows/deploy.yml`) POSTs to it on every
-push to `main`. Fully automatic deploys with no OAuth dependency.
+## Vercel account migration
 
-**To fix properly (future):** Migrate to a new Vercel account under the `dprplx` GitHub
-identity — then native Git integration works cleanly. Scheduled as a dedicated session.
+**Decision:** Create a new Vercel account under `dprplx.labs@gmail.com` / `dprplx`
+GitHub identity and migrate dprplx-web to it.
+
+**Why:** The original Vercel account was created under `cardshowclub@gmail.com` as an
+experiment before the dprplx org structure was established. It created an OAuth mismatch
+that blocked native GitHub integration and would have caused confusion as the portfolio grew.
+
+**How:** New account created using spouse's phone number for verification (existing number
+was tied to old account). Domain ownership verified via TXT records at GoDaddy. dprplx.com
+and www.dprplx.com transferred cleanly with a brief planned downtime window.
+
+**2FA:** Enabled on `dprplx` personal GitHub account and enforced at the `dprplx-labs`
+org level as part of this session.

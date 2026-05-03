@@ -20,8 +20,9 @@ backed by a Server Function. Hosted on Vercel, deployed from `dprplx-labs/dprplx
 | Font | Geist (Sans + Mono) | Via `next/font/google` |
 | Analytics | @vercel/analytics | `<Analytics />` in root layout; free Vercel tier |
 | Email | Resend | Server Function only; `RESEND_API_KEY` env var |
-| Deployment | Vercel (Hobby) | GitHub Actions → Deploy Hook → auto-deploy on push to `main` |
-| Domain | dprplx.com | GoDaddy DNS → Vercel A record `216.198.79.1` |
+| Deployment | Vercel (Hobby) | Native GitHub integration — push to `main` auto-deploys |
+| Vercel account | dprplx.labs@gmail.com | Linked to `dprplx` GitHub identity; owns `dprplx-labs` org |
+| Domain | dprplx.com | GoDaddy DNS → Vercel A record |
 | www | www.dprplx.com | 301 → dprplx.com via Vercel domain redirect |
 | Repo | dprplx-labs/dprplx-web | GitHub org: dprplx-labs |
 
@@ -102,12 +103,10 @@ to the sender's email. Gracefully falls back to console.log if `RESEND_API_KEY` 
 
 ## Deploy Pipeline
 
-Push to `main` → GitHub Actions (`.github/workflows/deploy.yml`) → HTTP POST to Vercel
-Deploy Hook → Vercel builds and promotes to production.
+Push to `main` → Vercel native GitHub integration → auto-deploy to production.
 
-The Deploy Hook approach bypasses the Vercel/GitHub OAuth mismatch (Vercel account is
-authenticated as `cardshowclub` GitHub; repo lives under `dprplx-labs` org owned by the
-personal `dprplx` GitHub account).
+The `dprplx-labs/dprplx-web` repo is directly connected to the Vercel project under
+the `dprplx.labs@gmail.com` account. No Deploy Hook or GitHub Actions required.
 
 ## Environment Variables
 
@@ -137,5 +136,5 @@ npm run dev      # Turbopack dev server
 npm run build    # Production build
 npm run lint     # ESLint (must pass before considering any task done)
 npx tsc --noEmit # Type-check (run alongside lint)
-vercel --prod    # Manual production deploy (until GitHub auto-deploy is wired)
+git push         # Triggers automatic production deploy via native Vercel Git integration
 ```

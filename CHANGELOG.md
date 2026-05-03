@@ -53,8 +53,28 @@ Format: significant milestones and releases. Granular changes live in git histor
 
 ---
 
+## [1.2.0] — 2026-05-03 — Vercel account migration + infrastructure cleanup
+
+### Infrastructure
+- **Vercel account migrated** — moved from `cardshowclub` account to new account under
+  `dprplx.labs@gmail.com` linked to `dprplx` GitHub identity
+- **Native GitHub auto-deploy** — `dprplx-labs/dprplx-web` directly connected to Vercel;
+  every push to `main` deploys automatically with no workaround required
+- **Deploy Hook workaround retired** — `.github/workflows/deploy.yml` removed; GitHub
+  Actions deploy hook no longer needed
+- **Domain migrated** — `dprplx.com` and `www.dprplx.com` verified and connected on
+  new Vercel account; TXT verification records added at GoDaddy
+- **Vercel Analytics** — re-enabled on new account
+- **Git commit identity** — local git config updated to `dprplx.labs@gmail.com`
+
+### Security
+- **2FA enabled** — on `dprplx` personal GitHub account and enforced on `dprplx-labs` org
+
+---
+
 ## Upcoming
 
 - Verify dprplx.com as sending domain in Resend (replace `onboarding@resend.dev`)
-- Vercel account restructuring (migrate from cardshowclub account to dprplx identity)
+- Templates repo (`dprplx-labs/templates`) before building next app
+- Notion workspace structure session
 - Portfolio card 02 — next app TBD
