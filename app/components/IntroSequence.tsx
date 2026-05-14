@@ -50,6 +50,7 @@ function TextSlide({
 export default function IntroSequence({ children }: { children: React.ReactNode }) {
   const [phase, setPhase] = useState<Phase>('perplexed')
   const [exiting, setExiting] = useState(false)
+  const [stoneCount, setStoneCount] = useState<1 | 2 | 3>(1)
 
   const finish = useCallback((instant = false) => {
     try { sessionStorage.setItem('dprplx_intro', '1') } catch {}
@@ -61,6 +62,7 @@ export default function IntroSequence({ children }: { children: React.ReactNode 
     }
   }, [])
 
+  // Main phase timer
   useEffect(() => {
     let t0: ReturnType<typeof setTimeout> | undefined
     try {
@@ -77,117 +79,128 @@ export default function IntroSequence({ children }: { children: React.ReactNode 
     return () => [t0, t1, t2, t3].forEach((t) => t && clearTimeout(t))
   }, [finish])
 
-  if (phase === 'done') return <>{children}</>
+  // Stone stacking animation — triggers when brand phase starts
+  useEffect(() => {
+    if (phase !== 'brand') return
+    const ta = setTimeout(() => setStoneCount(2), 500)
+    const tb = setTimeout(() => setStoneCount(3), 1000)
+    return () => { clearTimeout(ta); clearTimeout(tb) }
+  }, [phase])
 
+  // Always render in the same tree structure to prevent children remounting
+  // (which causes a visible blink when the overlay is removed).
+  // The overlay is conditionally rendered as a sibling, not as a wrapper.
   return (
     <>
       {children}
 
-      <div
-        role="button"
-        tabIndex={0}
-        aria-label="Skip intro"
-        onClick={() => finish()}
-        onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') ? finish() : undefined}
-        className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#0a0a0a] overflow-hidden cursor-pointer select-none"
-        style={{
-          opacity: exiting ? 0 : 1,
-          transition: exiting ? 'opacity 1s ease-out' : 'none',
-        }}
-      >
-        {/* Noise layer 1 */}
+      {phase !== 'done' && (
         <div
-          className="absolute inset-0 pointer-events-none"
+          role="button"
+          tabIndex={0}
+          aria-label="Skip intro"
+          onClick={() => finish()}
+          onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') ? finish() : undefined}
+          className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#0a0a0a] overflow-hidden cursor-pointer select-none"
           style={{
-            backgroundImage: NOISE_SVG,
-            backgroundSize: '200px 200px',
-            opacity: phase === 'perplexed' ? 0.38 : phase === 'deperplex' ? 0.07 : 0,
-            transition: 'opacity 1.8s ease-out',
-            animation: 'noiseShift 7s linear infinite',
-            mixBlendMode: 'screen',
-          }}
-        />
-
-        {/* Noise layer 2 — faster, offset */}
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            backgroundImage: NOISE_SVG,
-            backgroundSize: '200px 200px',
-            opacity: phase === 'perplexed' ? 0.20 : phase === 'deperplex' ? 0.03 : 0,
-            transition: 'opacity 1.8s ease-out',
-            animation: 'noiseShift2 4.5s linear infinite',
-            mixBlendMode: 'screen',
-          }}
-        />
-
-        {/* Floating question marks — visible only in perplexed phase */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          {FLOATERS.map((f, i) => (
-            <span
-              key={i}
-              className="absolute font-extralight text-zinc-600 select-none"
-              style={{
-                left: f.left,
-                top: f.top,
-                fontSize: f.size,
-                opacity: phase === 'perplexed' ? f.opacity : 0,
-                transition: 'opacity 1.6s ease-in-out',
-                animation: `${f.anim} ${f.dur}s ease-in-out infinite`,
-                animationDelay: f.delay,
-              }}
-            >
-              ?
-            </span>
-          ))}
-        </div>
-
-        {/* Logo + text */}
-        <div className="relative flex flex-col items-center gap-10">
-          <div
-            style={{
-              opacity: phase === 'brand' ? 1 : 0,
-              transform: `translateY(${phase === 'brand' ? '0' : '8px'})`,
-              transition: 'opacity 1s ease-in-out, transform 1s ease-in-out',
-            }}
-          >
-            <LogoMark width={88} />
-          </div>
-
-          <div
-            className="relative h-14 flex items-center justify-center"
-            style={{ minWidth: '20rem' }}
-          >
-            <TextSlide
-              text="perplexed?"
-              visible={phase === 'perplexed'}
-              animate
-              className="text-4xl sm:text-5xl text-zinc-500 tracking-wide"
-            />
-            <TextSlide
-              text="deperplex."
-              visible={phase === 'deperplex'}
-              className="text-4xl sm:text-5xl text-zinc-300 tracking-normal"
-            />
-            <TextSlide
-              text="dprplx"
-              visible={phase === 'brand'}
-              className="text-4xl sm:text-5xl text-white tracking-[0.2em]"
-            />
-          </div>
-        </div>
-
-        {/* Skip hint */}
-        <span
-          className="absolute bottom-10 text-[10px] font-light tracking-[0.3em] text-zinc-800 uppercase"
-          style={{
-            opacity: phase === 'perplexed' ? 0 : 0.7,
-            transition: 'opacity 1.2s ease-out',
+            opacity: exiting ? 0 : 1,
+            transition: exiting ? 'opacity 1s ease-out' : 'none',
           }}
         >
-          tap to skip
-        </span>
-      </div>
+          {/* Noise layer 1 */}
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              backgroundImage: NOISE_SVG,
+              backgroundSize: '200px 200px',
+              opacity: phase === 'perplexed' ? 0.38 : phase === 'deperplex' ? 0.07 : 0,
+              transition: 'opacity 1.8s ease-out',
+              animation: 'noiseShift 7s linear infinite',
+              mixBlendMode: 'screen',
+            }}
+          />
+
+          {/* Noise layer 2 — faster, offset */}
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              backgroundImage: NOISE_SVG,
+              backgroundSize: '200px 200px',
+              opacity: phase === 'perplexed' ? 0.20 : phase === 'deperplex' ? 0.03 : 0,
+              transition: 'opacity 1.8s ease-out',
+              animation: 'noiseShift2 4.5s linear infinite',
+              mixBlendMode: 'screen',
+            }}
+          />
+
+          {/* Floating question marks — visible only in perplexed phase */}
+          <div className="absolute inset-0 pointer-events-none overflow-hidden">
+            {FLOATERS.map((f, i) => (
+              <span
+                key={i}
+                className="absolute font-extralight text-zinc-600 select-none"
+                style={{
+                  left: f.left,
+                  top: f.top,
+                  fontSize: f.size,
+                  opacity: phase === 'perplexed' ? f.opacity : 0,
+                  transition: 'opacity 1.6s ease-in-out',
+                  animation: `${f.anim} ${f.dur}s ease-in-out infinite`,
+                  animationDelay: f.delay,
+                }}
+              >
+                ?
+              </span>
+            ))}
+          </div>
+
+          {/* Logo + text — gap-3 keeps cairn close to the wordmark */}
+          <div className="relative flex flex-col items-center gap-3">
+            <div
+              style={{
+                opacity: phase === 'brand' ? 1 : 0,
+                transform: `translateY(${phase === 'brand' ? '0' : '8px'})`,
+                transition: 'opacity 1s ease-in-out, transform 1s ease-in-out',
+              }}
+            >
+              <LogoMark width={88} stoneCount={stoneCount} />
+            </div>
+
+            <div
+              className="relative h-14 flex items-center justify-center"
+              style={{ minWidth: '20rem' }}
+            >
+              <TextSlide
+                text="perplexed?"
+                visible={phase === 'perplexed'}
+                animate
+                className="text-4xl sm:text-5xl text-zinc-500 tracking-wide"
+              />
+              <TextSlide
+                text="deperplex."
+                visible={phase === 'deperplex'}
+                className="text-4xl sm:text-5xl text-zinc-300 tracking-normal"
+              />
+              <TextSlide
+                text="dprplx"
+                visible={phase === 'brand'}
+                className="text-4xl sm:text-5xl text-white tracking-[0.2em]"
+              />
+            </div>
+          </div>
+
+          {/* Skip hint */}
+          <span
+            className="absolute bottom-10 text-[10px] font-light tracking-[0.3em] text-zinc-800 uppercase"
+            style={{
+              opacity: phase === 'perplexed' ? 0 : 0.7,
+              transition: 'opacity 1.2s ease-out',
+            }}
+          >
+            tap to skip
+          </span>
+        </div>
+      )}
     </>
   )
 }
