@@ -24,10 +24,10 @@ const products: {
   { id: "03", name: null, status: "development" },
 ]
 
-const statusConfig: Record<Status, { dot: string; label: string; text: string }> = {
-  live:        { dot: "bg-emerald-500", label: "Live",        text: "text-zinc-300" },
-  demo:        { dot: "bg-yellow-400",  label: "Demo Mode",   text: "text-zinc-300" },
-  development: { dot: "bg-zinc-700",    label: "In development", text: "text-zinc-600" },
+const statusConfig: Record<Status, { dot: string; label: string; text: string; size: string }> = {
+  live:        { dot: "bg-emerald-500", label: "Live",           text: "text-zinc-300", size: "text-[10px]" },
+  demo:        { dot: "bg-yellow-400",  label: "Demo Mode",      text: "text-zinc-300", size: "text-[9px]"  },
+  development: { dot: "bg-zinc-700",    label: "In development", text: "text-zinc-600", size: "text-[10px]" },
 }
 
 export default function Portfolio() {
@@ -77,7 +77,7 @@ export default function Portfolio() {
                 <div className="flex items-center justify-between mt-12">
                   <div className="flex items-center gap-2.5">
                     <span className={`w-2 h-2 rounded-full transition-opacity duration-500 group-hover:opacity-70 ${s.dot}`} />
-                    <span className={`text-[10px] font-light tracking-[0.3em] uppercase ${s.text}`}>
+                    <span className={`${s.size} font-light tracking-[0.3em] uppercase ${s.text}`}>
                       {s.label}
                     </span>
                   </div>
