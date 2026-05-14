@@ -20,8 +20,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 The dprplx brand and portfolio website. Currently a portfolio/brand site; will evolve to include landing pages for portfolio apps as they launch.
 
-**Live domain:** dprplx.com (registered, not yet deployed)
-**Hosting:** Vercel (target deployment platform)
+**Live domain:** dprplx.com (live in production)
+**Hosting:** Vercel (deployed)
 **GitHub org:** dprplx-labs
 
 ### Design Principles for this site
@@ -29,11 +29,15 @@ The dprplx brand and portfolio website. Currently a portfolio/brand site; will e
 - Background: #0a0a0a (near-black)
 - Font: Geist, font-weight 200 (extralight) for display type — restraint is intentional
 - Color palette: zinc scale, restrained. Nothing loud.
-- Zero images, zero icons, zero drop shadows unless absolutely justified
+- Zero images, zero drop shadows unless absolutely justified
 - Generous whitespace — negative space carries the weight
 - Section labels: uppercase, wide letter-spacing, zinc-600 — architectural, barely-there
-- Animations: CSS only, no JS-driven motion. Subtle fade-ups, no bouncing or flash.
+- Animations: CSS only where possible; client components only when interactivity requires it
 - Mobile-first, but the desktop experience is primary for now
+
+### LogoMark
+
+A cairn: three stacked elliptical stones, outline only. Top (smallest) = white, middle = #87B1FF, bottom (largest) = IBM blue #0F62FE. Lives in `app/components/LogoMark.tsx`. Do not alter without Tom's explicit direction.
 
 ### Current site structure
 
@@ -41,7 +45,12 @@ The dprplx brand and portfolio website. Currently a portfolio/brand site; will e
 - `app/components/Hero.tsx` — Full-viewport, staggered CSS fade-up: eyebrow → heading → subtext
 - `app/components/Philosophy.tsx` — Brand manifesto, large pull-quote, founder copy
 - `app/components/Portfolio.tsx` — 3-column grid, hairline dividers, placeholder app cards
+- `app/components/Contact.tsx` — Contact section (partnerships, press, investment)
+- `app/components/ContactForm.tsx` — Contact form (client component)
 - `app/components/Footer.tsx` — Minimal: wordmark · Tom — CEO · copyright
+- `app/components/LogoMark.tsx` — SVG cairn logomark (three stacked ellipses)
+- `app/components/IntroSequence.tsx` — Client component; full-screen branded intro on first visit: perplexed? → deperplex. → dprplx. Floating question marks, noise texture, fade transitions. Skippable. Uses sessionStorage to show once per session.
+- `app/opengraph-image.tsx` — OG image for social sharing
 
 ### When making changes
 
@@ -60,6 +69,23 @@ npm run lint     # Run ESLint (eslint.config.mjs flat config)
 ```
 
 There are no tests configured yet.
+
+## Next Session
+
+<!-- 
+INSTRUCTIONS FOR CLAUDE CODE:
+At the end of every session, capture any unfinished tasks or follow-up actions here.
+These are automatically synced to the dprplx Notion Task Board (tagged "Claude Code") by a Cowork scheduled task, then cleared.
+
+Format — one task per line, starting with "- ":
+- Task description [optional: due:YYYY-MM-DD]
+
+Examples:
+- Add contact form validation
+- Migrate auth to Supabase due:2026-05-10
+
+Leave this section empty if there are no pending tasks.
+-->
 
 ## Architecture
 
