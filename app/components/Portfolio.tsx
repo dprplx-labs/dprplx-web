@@ -1,4 +1,4 @@
-type Status = "live" | "demo" | "development"
+type Status = "live" | "demo" | "development" | "waitlist"
 
 const products: {
   id: string
@@ -21,13 +21,19 @@ const products: {
     domain: "kaboomexchange.com",
     status: "demo",
   },
-  { id: "03", name: null, status: "development" },
+  {
+    id: "03",
+    name: "Slab CFO",
+    tagline: "Personal finance built for the serious collector. Know what your collection is really worth — and what to do about it.",
+    status: "waitlist",
+  },
 ]
 
 const statusConfig: Record<Status, { dot: string; label: string; text: string; size: string }> = {
-  live:        { dot: "bg-emerald-500", label: "Live",           text: "text-zinc-300", size: "text-[10px]" },
-  demo:        { dot: "bg-yellow-400",  label: "Demo Mode",      text: "text-zinc-300", size: "text-[9px]"  },
-  development: { dot: "bg-zinc-700",    label: "In development", text: "text-zinc-600", size: "text-[10px]" },
+  live:        { dot: "bg-emerald-500",  label: "Live",           text: "text-zinc-300", size: "text-[10px]" },
+  demo:        { dot: "bg-yellow-400",   label: "Demo Mode",      text: "text-zinc-300", size: "text-[9px]"  },
+  waitlist:    { dot: "bg-[#87B1FF]",    label: "Waitlist",       text: "text-zinc-400", size: "text-[10px]" },
+  development: { dot: "bg-zinc-700",     label: "In development", text: "text-zinc-600", size: "text-[10px]" },
 }
 
 export default function Portfolio() {
