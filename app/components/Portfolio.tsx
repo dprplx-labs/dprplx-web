@@ -25,6 +25,7 @@ const products: {
     id: "03",
     name: "Slab CFO",
     tagline: "Personal finance built for the serious collector. Know what your collection is really worth — and what to do about it.",
+    domain: "slabcfo.com",
     status: "waitlist",
   },
 ]
