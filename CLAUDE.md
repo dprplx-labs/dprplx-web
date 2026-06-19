@@ -57,7 +57,7 @@ A cairn: three stacked elliptical stones, outline only. Top (smallest) = white, 
 
 - `app/components/Nav.tsx` — Fixed bar; cairn + `dprplx` wordmark link to `/`; single restrained right-aligned **Lab** link → `/lab`. Appears on both pages.
 - `app/components/Hero.tsx` — Full-viewport, staggered CSS fade-up (eyebrow → heading → subtext). **Parametrized via props** (`eyebrow`, `line1`, `line2`, `subhead`) so both pages reuse it; animation timings (0.1s/0.3s/0.5s) are fixed.
-- `app/components/Work.tsx` — *(home)* "What We Do" section: less to run, more that works. Server Component.
+- `app/components/Work.tsx` — *(home)* "Our Approach" section: less to run, more that works. Server Component.
 - `app/components/WhyItWorks.tsx` — *(home)* "The Difference" section: most companies add tools, we rebuild the work. Server Component.
 - `app/components/Philosophy.tsx` — *(lab)* Brand manifesto, large pull-quote, founder copy
 - `app/components/Portfolio.tsx` — *(lab)* 3-column grid, hairline dividers, app cards (status dots, domain links)
