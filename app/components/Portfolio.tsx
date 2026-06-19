@@ -9,17 +9,17 @@ const products: {
 }[] = [
   {
     id: "01",
-    name: "Card Show Club",
-    tagline: "Reimagining the sports card show economy — bridging the physical show floor and the digital hobbyist.",
-    domain: "cardshowclub.com",
-    status: "waitlist",
-  },
-  {
-    id: "02",
     name: "Kaboom Exchange",
     tagline: "A trading-grade bid/ask order book for Panini Kaboom! cards. The market exists. Now it has a home.",
     domain: "kaboomexchange.com",
     status: "demo",
+  },
+  {
+    id: "02",
+    name: "Card Show Club",
+    tagline: "Reimagining the sports card show economy — bridging the physical show floor and the digital hobbyist.",
+    domain: "cardshowclub.com",
+    status: "waitlist",
   },
   {
     id: "03",
