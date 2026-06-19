@@ -14,7 +14,15 @@
       "Skill(update-config)",
       "Skill(update-config:*)",
       "Bash(npm install *)",
-      "Bash(vercel --prod)"
+      "Bash(vercel --prod)",
+      "Bash(git rev-list *)",
+      "Read(//c/Users/tcamm/.claude/**)",
+      "Bash(git -C ~/.claude/plugins/cache/anthropic-skills remote -v)",
+      "Bash(python -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\('\\\\n'.join\\(p.get\\('name','?'\\) for p in d.get\\('plugins', d if isinstance\\(d,list\\) else []\\)\\)\\)\")",
+      "Bash(grep -o 'anthropic-skills[^\"]*' __TRACKED_VAR__/.claude/config.json)",
+      "Bash(grep -o 'anthropic-skills[^\"]*' __TRACKED_VAR__/.claude/settings.json)",
+      "PowerShell(\"alive check\"; \\(Test-Path \"C:\\\\Users\\\\tcamm\\\\.claude\\\\settings.json\"\\); \\(Get-Item \"C:\\\\Users\\\\tcamm\\\\.claude\\\\settings.json\"\\).Length)",
+      "PowerShell(git add app/components/Hero.tsx app/components/Work.tsx app/components/WhyItWorks.tsx app/components/Nav.tsx app/page.tsx app/lab/page.tsx app/components/Contact.tsx app/layout.tsx app/opengraph-image.tsx CLAUDE.md docs/agency-redesign-brief.md)"
     ]
   }
 }
