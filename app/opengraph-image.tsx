@@ -28,7 +28,7 @@ export default function OGImage() {
             fontWeight: 300,
           }}
         >
-          Portfolio Co. · Est. 2025
+          Agency · Est. 2026
         </p>
         <h1
           style={{
@@ -51,7 +51,7 @@ export default function OGImage() {
             lineHeight: 1.4,
           }}
         >
-          Software distilled to its essence.
+          We rebuild how businesses work.
         </p>
       </div>
     ),

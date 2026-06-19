@@ -13,7 +13,8 @@ export default function Contact() {
         </h2>
 
         <p className="text-[15px] font-light text-zinc-400 leading-7 max-w-sm mb-14">
-          For partnerships, press, or investment inquiries.
+          Whether you want to work together, partner, or just compare notes on
+          what comes next — start here.
         </p>
 
         <ContactForm />

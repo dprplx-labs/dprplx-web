@@ -18,7 +18,14 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## This Repository — dprplx-web
 
-The dprplx brand and portfolio website. Currently a portfolio/brand site; will evolve to include landing pages for portfolio apps as they launch.
+The dprplx brand website. A **two-page** site:
+
+- **Home (`/`)** — agency positioning. Presents dprplx as an agency that rebuilds how businesses work for the age of agents (leaner, clearer, built to run itself). Home copy is **agency-only**: no mention of the Lab, portfolio, or products. The only path to the Lab is the restrained nav link.
+- **Lab (`/lab`)** — the software product portfolio (the original brand-site content: distilled, focused software products).
+
+**Positioning copy rule:** the literal term **"AI" must not appear in rendered copy** anywhere on the site — it is intentionally implied via "agents" and "the age of agents." (Code comments are fine; visible text is not.)
+
+Will evolve to include landing pages for portfolio apps as they launch.
 
 **Live domain:** dprplx.com (live in production)
 **Hosting:** Vercel (deployed)
@@ -39,17 +46,26 @@ The dprplx brand and portfolio website. Currently a portfolio/brand site; will e
 
 A cairn: three stacked elliptical stones, outline only. Top (smallest) = white, middle = #87B1FF, bottom (largest) = IBM blue #0F62FE. Lives in `app/components/LogoMark.tsx`. Do not alter without Tom's explicit direction.
 
-### Current site structure
+### Site structure
 
-- `app/components/Nav.tsx` — Fixed wordmark, dprplx, wide letter-spacing, top-left
-- `app/components/Hero.tsx` — Full-viewport, staggered CSS fade-up: eyebrow → heading → subtext
-- `app/components/Philosophy.tsx` — Brand manifesto, large pull-quote, founder copy
-- `app/components/Portfolio.tsx` — 3-column grid, hairline dividers, placeholder app cards
-- `app/components/Contact.tsx` — Contact section (partnerships, press, investment)
+**Routes** (both wrapped in the unchanged `IntroSequence`):
+
+- `app/page.tsx` — Home (agency): `Nav → main(Hero → Work → WhyItWorks → Contact) → Footer`
+- `app/lab/page.tsx` — Lab (portfolio): `Nav → main(Hero → Philosophy → Portfolio) → Footer`. Has its own route `metadata`. **No Contact section** (avoids a duplicate form; easy to add later).
+
+**Components:**
+
+- `app/components/Nav.tsx` — Fixed bar; cairn + `dprplx` wordmark link to `/`; single restrained right-aligned **Lab** link → `/lab`. Appears on both pages.
+- `app/components/Hero.tsx` — Full-viewport, staggered CSS fade-up (eyebrow → heading → subtext). **Parametrized via props** (`eyebrow`, `line1`, `line2`, `subhead`) so both pages reuse it; animation timings (0.1s/0.3s/0.5s) are fixed.
+- `app/components/Work.tsx` — *(home)* "What We Do" section: less to run, more that works. Server Component.
+- `app/components/WhyItWorks.tsx` — *(home)* "The Difference" section: most companies add tools, we rebuild the work. Server Component.
+- `app/components/Philosophy.tsx` — *(lab)* Brand manifesto, large pull-quote, founder copy
+- `app/components/Portfolio.tsx` — *(lab)* 3-column grid, hairline dividers, app cards (status dots, domain links)
+- `app/components/Contact.tsx` — *(home)* Contact section ("Let's talk."), broadened intro line
 - `app/components/ContactForm.tsx` — Contact form (client component)
-- `app/components/Footer.tsx` — Minimal: wordmark · Tom — CEO · copyright
-- `app/components/LogoMark.tsx` — SVG cairn logomark (three stacked ellipses)
-- `app/components/IntroSequence.tsx` — Client component; full-screen branded intro on first visit: perplexed? → deperplex. → dprplx. Floating question marks, noise texture, fade transitions. Skippable. Uses sessionStorage to show once per session.
+- `app/components/Footer.tsx` — Minimal: wordmark · Tom — CEO · copyright. Both pages.
+- `app/components/LogoMark.tsx` — SVG cairn logomark (three stacked ellipses). **Brand-locked — do not modify.**
+- `app/components/IntroSequence.tsx` — Client component; full-screen branded intro on first visit: perplexed? → deperplex. → dprplx. Floating question marks, noise texture, fade transitions. Skippable. Uses `sessionStorage` (`dprplx_intro`) to show once per session — plays once regardless of which page the visitor lands on. **Brand-locked — do not modify.**
 - `app/opengraph-image.tsx` — OG image for social sharing
 
 ### When making changes

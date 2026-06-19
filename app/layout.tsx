@@ -14,23 +14,23 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "dprplx — Software distilled to its essence",
+  title: "dprplx — An agency that rebuilds how businesses work",
   description:
-    "A holding company building a focused portfolio of software products. Each one shaped by a single principle: the beauty of simplicity.",
+    "dprplx is an agency that helps businesses rebuild how they operate for the age of agents — leaner, clearer, and built to run themselves.",
   metadataBase: new URL("https://dprplx.com"),
   openGraph: {
-    title: "dprplx — Software distilled to its essence",
+    title: "dprplx — An agency that rebuilds how businesses work",
     description:
-      "A holding company building a focused portfolio of software products. Each one shaped by a single principle: the beauty of simplicity.",
+      "dprplx is an agency that helps businesses rebuild how they operate for the age of agents — leaner, clearer, and built to run themselves.",
     url: "https://dprplx.com",
     siteName: "dprplx",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "dprplx — Software distilled to its essence",
+    title: "dprplx — An agency that rebuilds how businesses work",
     description:
-      "A holding company building a focused portfolio of software products.",
+      "dprplx is an agency that helps businesses rebuild how they operate for the age of agents — leaner, clearer, and built to run themselves.",
   },
 };
 
