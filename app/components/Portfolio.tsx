@@ -10,9 +10,9 @@ const products: {
   {
     id: "01",
     name: "Card Show Club",
-    tagline: "The modern operating system for the sports card show economy. Bridging physical show floors and the digital hobbyist.",
+    tagline: "Reimagining the sports card show economy — bridging the physical show floor and the digital hobbyist.",
     domain: "cardshowclub.com",
-    status: "live",
+    status: "waitlist",
   },
   {
     id: "02",
