@@ -22,7 +22,13 @@
       "Bash(grep -o 'anthropic-skills[^\"]*' __TRACKED_VAR__/.claude/config.json)",
       "Bash(grep -o 'anthropic-skills[^\"]*' __TRACKED_VAR__/.claude/settings.json)",
       "PowerShell(\"alive check\"; \\(Test-Path \"C:\\\\Users\\\\tcamm\\\\.claude\\\\settings.json\"\\); \\(Get-Item \"C:\\\\Users\\\\tcamm\\\\.claude\\\\settings.json\"\\).Length)",
-      "PowerShell(git add app/components/Hero.tsx app/components/Work.tsx app/components/WhyItWorks.tsx app/components/Nav.tsx app/page.tsx app/lab/page.tsx app/components/Contact.tsx app/layout.tsx app/opengraph-image.tsx CLAUDE.md docs/agency-redesign-brief.md)"
+      "PowerShell(git add app/components/Hero.tsx app/components/Work.tsx app/components/WhyItWorks.tsx app/components/Nav.tsx app/page.tsx app/lab/page.tsx app/components/Contact.tsx app/layout.tsx app/opengraph-image.tsx CLAUDE.md docs/agency-redesign-brief.md)",
+      "WebFetch(domain:slabcall.com)",
+      "PowerShell(npm run lint)",
+      "PowerShell(npx tsc --noEmit)",
+      "mcp__2606c2ad-8dd0-4928-ade6-2cdee78cc7ef__notion-search",
+      "mcp__2606c2ad-8dd0-4928-ade6-2cdee78cc7ef__notion-fetch",
+      "Bash(git push *)"
     ]
   }
 }
