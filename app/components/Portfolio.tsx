@@ -28,6 +28,15 @@ const products: {
     domain: "slabcfo.com",
     status: "waitlist",
   },
+  {
+    id: "04",
+    name: "SlabCall",
+    tagline: "The demand network for graded cards. Collectors post what they want to buy, sell, or trade — the app does the matching.",
+    domain: "slabcall.com",
+    status: "waitlist",
+  },
+  { id: "05", name: null, status: "development" },
+  { id: "06", name: null, status: "development" },
 ]
 
 const statusConfig: Record<Status, { dot: string; label: string; text: string; size: string }> = {
