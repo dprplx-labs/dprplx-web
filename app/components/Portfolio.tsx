@@ -35,7 +35,13 @@ const products: {
     domain: "slabcall.com",
     status: "waitlist",
   },
-  { id: "05", name: null, status: "development" },
+  {
+    id: "05",
+    name: "Vayld",
+    tagline: "Privacy-first personal finance and allocation. Track everything, share nothing — your data never leaves your device.",
+    domain: "vayld.com",
+    status: "waitlist",
+  },
   { id: "06", name: null, status: "development" },
 ]
 
