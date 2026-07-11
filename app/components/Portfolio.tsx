@@ -42,7 +42,13 @@ const products: {
     domain: "vayld.com",
     status: "waitlist",
   },
-  { id: "06", name: null, status: "development" },
+  {
+    id: "06",
+    name: "Fly5x",
+    tagline: "Don't found alone. Fractional micro-teams and automated ownership rails — stakes, agreements, payouts — for builders shipping a portfolio of products.",
+    domain: "fly5x.com",
+    status: "waitlist",
+  },
 ]
 
 const statusConfig: Record<Status, { dot: string; label: string; text: string; size: string }> = {
