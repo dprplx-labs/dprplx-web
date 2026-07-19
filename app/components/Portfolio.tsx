@@ -29,11 +29,24 @@ const categories: Category[] = [
     ],
   },
   {
+    key: "petcare",
+    label: "Pet Care",
+    products: [
+      {
+        id: "02",
+        name: "Paws Post Op",
+        tagline: "Post-op recovery plans for veterinary surgical practices — adapted to the household each dog actually goes home to.",
+        domain: "pawspostop.com",
+        status: "waitlist",
+      },
+    ],
+  },
+  {
     key: "finance",
     label: "Personal Finance",
     products: [
       {
-        id: "02",
+        id: "03",
         name: "Vayld",
         tagline: "Privacy-first personal finance and allocation. Track everything, share nothing — your data never leaves your device.",
         domain: "vayld.com",
@@ -46,28 +59,28 @@ const categories: Category[] = [
     label: "Collectible Markets",
     products: [
       {
-        id: "03",
+        id: "04",
         name: "Kaboom Exchange",
         tagline: "A trading-grade bid/ask order book for Panini Kaboom! cards. The market exists. Now it has a home.",
         domain: "kaboomexchange.com",
         status: "demo",
       },
       {
-        id: "04",
+        id: "05",
         name: "Card Show Club",
         tagline: "Reimagining the sports card show economy — bridging the physical show floor and the digital hobbyist.",
         domain: "cardshowclub.com",
         status: "waitlist",
       },
       {
-        id: "05",
+        id: "06",
         name: "Slab CFO",
         tagline: "Personal finance built for the serious collector. Know what your collection is really worth — and what to do about it.",
         domain: "slabcfo.com",
         status: "waitlist",
       },
       {
-        id: "06",
+        id: "07",
         name: "SlabCall",
         tagline: "The demand network for graded cards. Collectors post what they want to buy, sell, or trade — the app does the matching.",
         domain: "slabcall.com",
@@ -80,23 +93,10 @@ const categories: Category[] = [
     label: "Builder Platforms",
     products: [
       {
-        id: "07",
+        id: "08",
         name: "Fly5x",
         tagline: "Don't found alone. Fractional micro-teams and automated ownership rails — stakes, agreements, payouts — for builders shipping a portfolio of products.",
         domain: "fly5x.com",
-        status: "waitlist",
-      },
-    ],
-  },
-  {
-    key: "petcare",
-    label: "Pet Care",
-    products: [
-      {
-        id: "08",
-        name: "Paws Post Op",
-        tagline: "Post-op recovery plans for veterinary surgical practices — adapted to the household each dog actually goes home to.",
-        domain: "pawspostop.com",
         status: "waitlist",
       },
     ],
@@ -186,11 +186,12 @@ export default function Portfolio() {
             const fillerCount = remainder === 0 ? 0 : 3 - remainder
             return (
               <div key={category.key}>
-                <div className="flex items-center gap-6 mb-8">
-                  <p className="text-[11px] font-light tracking-[0.3em] text-zinc-600 uppercase whitespace-nowrap">
+                <div className="flex items-center gap-5 mb-8">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#87B1FF]/70" />
+                  <p className="text-[11px] font-light tracking-[0.3em] text-zinc-300 uppercase whitespace-nowrap">
                     {category.label}
                   </p>
-                  <div className="h-px flex-1 bg-zinc-900" />
+                  <div className="h-px flex-1 bg-gradient-to-r from-zinc-700 to-transparent" />
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-zinc-900">
