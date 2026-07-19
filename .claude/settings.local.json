@@ -28,7 +28,11 @@
       "PowerShell(npx tsc --noEmit)",
       "mcp__2606c2ad-8dd0-4928-ade6-2cdee78cc7ef__notion-search",
       "mcp__2606c2ad-8dd0-4928-ade6-2cdee78cc7ef__notion-fetch",
-      "Bash(git push *)"
+      "Bash(git push *)",
+      "Bash(curl -s https://dprplx.com/lab)",
+      "PowerShell(git add app/components/Portfolio.tsx)",
+      "PowerShell(git push)",
+      "PowerShell(git push origin main)"
     ]
   }
 }
