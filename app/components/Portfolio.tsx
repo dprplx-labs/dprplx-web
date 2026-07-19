@@ -88,6 +88,19 @@ const categories: Category[] = [
       },
     ],
   },
+  {
+    key: "petcare",
+    label: "Pet Care",
+    products: [
+      {
+        id: "08",
+        name: "Paws Post Op",
+        tagline: "Post-op recovery plans for veterinary surgical practices — adapted to the household each dog actually goes home to.",
+        domain: "pawspostop.com",
+        status: "waitlist",
+      },
+    ],
+  },
 ]
 
 const statusConfig: Record<Status, { dot: string; label: string; text: string; size: string }> = {
